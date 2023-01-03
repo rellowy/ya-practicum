@@ -8,7 +8,7 @@ import {
 import BurgerConstructorStyles from "./burger-constructor.module.css";
 import BurgerElement from "./burger-element/burger-element";
 
-const BurgerConstructor = ({ ingredients }) => {
+const BurgerConstructor = ({ ingredients, handleClose }) => {
   let fullPrice = 0;
 
   const renderElement = (ingredient, idx, isMain = false) => {
@@ -37,6 +37,7 @@ const BurgerConstructor = ({ ingredients }) => {
         text={text}
         elementType={type}
         isMain={isMain}
+        handleClose={() => handleClose({ ingredient, idx })}
       />
     );
   };
@@ -89,6 +90,7 @@ BurgerConstructor.propTypes = {
   ingredients: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.arrayOf(ingredientShape), ingredientShape])
   ),
+  handleClose: PropTypes.func,
 };
 
 export default BurgerConstructor;

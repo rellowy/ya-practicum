@@ -12,6 +12,13 @@ function App() {
     defaultBun,
   ]);
 
+  const handleClose = ({ idx }) => {
+    let newSelected = [...selectedIngredients];
+
+    newSelected[1].splice(idx, 1);
+    setSelectedIngredients(newSelected);
+  };
+
   const selectIngredient = (ingredient) => {
     const main = selectedIngredients[1];
     let newSelected = [...selectedIngredients];
@@ -34,7 +41,10 @@ function App() {
             ingredients={data}
             selectIngredient={selectIngredient}
           />
-          <BurgerConstructor ingredients={selectedIngredients} />
+          <BurgerConstructor
+            ingredients={selectedIngredients}
+            handleClose={handleClose}
+          />
         </div>
       </main>
     </>

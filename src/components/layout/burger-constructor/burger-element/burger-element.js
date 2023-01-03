@@ -7,7 +7,13 @@ import {
 import BurgerElementStyles from "./burger-element.module.css";
 import PropTypes from "prop-types";
 
-const BurgerElement = ({ ingredient, text, elementType, isMain, onDrag }) => {
+const BurgerElement = ({
+  ingredient,
+  text,
+  elementType,
+  isMain,
+  handleClose,
+}) => {
   const element = (
     <ConstructorElement
       type={elementType}
@@ -15,6 +21,7 @@ const BurgerElement = ({ ingredient, text, elementType, isMain, onDrag }) => {
       text={text}
       price={ingredient.price}
       thumbnail={ingredient.image}
+      handleClose={handleClose}
     />
   );
 
@@ -32,6 +39,7 @@ BurgerElement.propTypes = {
   isMain: PropTypes.bool,
   text: PropTypes.string.isRequired,
   onDrag: PropTypes.func,
+  handleClose: PropTypes.func,
 };
 
 BurgerElement.defaultProps = {
