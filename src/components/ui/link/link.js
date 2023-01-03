@@ -15,7 +15,10 @@ const Link = ({ to, children, active }) => {
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired, // todo понять, как сделать
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
   active: PropTypes.bool,
 };
 

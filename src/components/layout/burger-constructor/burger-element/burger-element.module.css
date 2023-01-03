@@ -1,0 +1,9 @@
+.draggableElement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.draggableElement > svg {
+    cursor: grab;
+}

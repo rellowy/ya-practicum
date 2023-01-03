@@ -15,8 +15,10 @@
 
 .scrollWrapper::-webkit-scrollbar {
     background-color: var(--background-element);
+    width: 8px;
 }
 
 .scrollWrapper::-webkit-scrollbar-thumb {
     background-color: var(--text-inactive-color);
+    width: 8px;
 }

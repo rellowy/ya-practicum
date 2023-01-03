@@ -4,7 +4,7 @@ import ingredientShape from "../../../../types/ingredientShape";
 import IngredientCard from "../card/card";
 import SectionStyles from "./section.module.css";
 
-const IngredientsSection = ({ type, ingredients }) => {
+const IngredientsSection = ({ type, ingredients, selectIngredient }) => {
   const mappingType = {
     bun: "Булки",
     sauce: "Соусы",
@@ -16,7 +16,7 @@ const IngredientsSection = ({ type, ingredients }) => {
       <h2 id={type} className={SectionStyles.sectionName}>
         {mappingType[type] || "Неизвестный тип"}
       </h2>
-      <div
+      <ul
         className={[
           "pt-6",
           "pl-4",
@@ -26,9 +26,14 @@ const IngredientsSection = ({ type, ingredients }) => {
         ].join(" ")}
       >
         {ingredients.map((ingredient) => (
-          <IngredientCard key={ingredient._id} ingredient={ingredient} />
+          <li key={ingredient._id}>
+            <IngredientCard
+              ingredient={ingredient}
+              selectIngredient={selectIngredient}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
@@ -36,6 +41,7 @@ const IngredientsSection = ({ type, ingredients }) => {
 IngredientsSection.propTypes = {
   type: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(ingredientShape).isRequired,
+  selectIngredient: PropTypes.func.isRequired,
 };
 
 export default IngredientsSection;
