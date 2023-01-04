@@ -8,7 +8,12 @@ import {
 import BurgerConstructorStyles from "./burger-constructor.module.css";
 import BurgerElement from "./burger-element/burger-element";
 
-const BurgerConstructor = ({ ingredients, handleClose }) => {
+const BurgerConstructor = ({
+  ingredients,
+  handleClose,
+  onDragStart,
+  onDrop,
+}) => {
   let fullPrice = 0;
 
   const renderElement = (ingredient, idx, isMain = false) => {
@@ -37,7 +42,10 @@ const BurgerConstructor = ({ ingredients, handleClose }) => {
         text={text}
         elementType={type}
         isMain={isMain}
+        index={idx}
         handleClose={() => handleClose({ ingredient, idx })}
+        onDragStart={(index) => onDragStart(index)}
+        onDrop={(index) => onDrop(index)}
       />
     );
   };
@@ -91,6 +99,8 @@ BurgerConstructor.propTypes = {
     PropTypes.oneOfType([PropTypes.arrayOf(ingredientShape), ingredientShape])
   ),
   handleClose: PropTypes.func,
+  onDragStart: PropTypes.func,
+  onDrop: PropTypes.func,
 };
 
 export default BurgerConstructor;
