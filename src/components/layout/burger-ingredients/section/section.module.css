@@ -1,0 +1,11 @@
+.ingredientWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 32px;
+}
+
+.sectionName {
+    font-size: 24px;
+    font-family: 'Jet Brains Mono', Arial, sans-serif;
+}

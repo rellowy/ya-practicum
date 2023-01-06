@@ -1,0 +1,31 @@
+.appHeader {
+    background-color: var(--background);
+    color: white;
+    height: 88px;
+    display: flex;
+    align-items: center;
+}
+
+.appHeader nav {
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu > li:first-child {
+    flex-grow: .5;
+    flex-shrink: 1;
+}
+
+.menuGroup {
+    display: flex;
+    gap: 8px;
+}
+
+.logoCentered {
+    flex: .8 0 auto;
+}

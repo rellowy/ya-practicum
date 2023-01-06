@@ -1,0 +1,42 @@
+.container {}
+
+.elements {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.elementsMain {
+    overflow-y: auto;
+    max-height: 40vh;
+}
+
+.elementsMain::-webkit-scrollbar {
+    background-color: var(--background-element);
+    width: 8px;
+}
+
+.elementsMain::-webkit-scrollbar-thumb {
+    background-color: var(--text-inactive-color);
+    width: 8px;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.infoPrice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Jet Brains Mono', Arial, sans-serif;
+    font-size: 48px;
+}
+
+.infoPrice > svg {
+    width: 33px;
+    height: 33px;
+}

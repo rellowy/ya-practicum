@@ -1,0 +1,17 @@
+.link {
+    color: var(--text-inactive-color);
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    padding: 16px 20px;
+}
+
+.link > svg {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+}
+
+.link.active {
+    color: var(--text-primary-color);
+}
