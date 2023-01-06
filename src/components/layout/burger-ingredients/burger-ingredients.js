@@ -5,7 +5,11 @@ import BurgerIngredientsStyles from "./burger-ingredients.module.css";
 import ingredientShape from "../../../types/ingredientShape";
 import IngredientsSection from "./section/section";
 
-const BurgerIngredients = ({ ingredients, selectIngredient }) => {
+const BurgerIngredients = ({
+  ingredients,
+  selectIngredient,
+  selectedIngredients,
+}) => {
   const [currentTab, setCurrentTab] = useState("bun");
   const scrollWrapperRef = useRef(null);
 
@@ -73,6 +77,7 @@ const BurgerIngredients = ({ ingredients, selectIngredient }) => {
               type={key}
               ingredients={value}
               selectIngredient={selectIngredient}
+              selectedIngredients={selectedIngredients}
             />
           ))}
         </div>
@@ -84,6 +89,9 @@ const BurgerIngredients = ({ ingredients, selectIngredient }) => {
 BurgerIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(ingredientShape).isRequired,
   selectIngredient: PropTypes.func.isRequired,
+  selectedIngredients: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.arrayOf(ingredientShape), ingredientShape])
+  ).isRequired,
 };
 
 export default BurgerIngredients;

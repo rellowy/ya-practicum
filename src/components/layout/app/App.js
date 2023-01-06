@@ -1,27 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import AppHeader from "../app-header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import { data, defaultBun } from "../../../utils/data";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedIngredients: [defaultBun, [], defaultBun],
-      dragStartIndex: null,
-    };
-  }
+const App = (props) => {
+  const [selectedIngredients, setSelectedIngredients] = useState([
+    defaultBun,
+    [],
+    defaultBun,
+  ]);
+  const [dragStartIndex, setDragStartIndex] = useState(null);
 
-  onDragStart = (index) => this.setState({ dragStartIndex: index });
+  const onDragStart = (index) => setDragStartIndex(index);
 
-  setSelectedIngredients = (newSelected) =>
-    this.setState({ selectedIngredients: newSelected });
-
-  onDrop = (dropIndex) => {
-    const dragStartIndex = this.state.dragStartIndex;
-    const mainIngredients = this.state.selectedIngredients[1];
+  const onDrop = (dropIndex) => {
+    const mainIngredients = selectedIngredients[1];
     const dragItem = mainIngredients[dragStartIndex];
 
     let newMainIngredients = [...mainIngredients];
@@ -40,52 +35,51 @@ class App extends Component {
       ];
     }
 
-    const newSelected = [...this.state.selectedIngredients];
+    const newSelected = [...selectedIngredients];
     newSelected[1] = newMainIngredients;
     this.setSelectedIngredients(newSelected);
   };
 
-  handleClose = ({ idx }) => {
-    let newSelected = [...this.state.selectedIngredients];
+  const handleClose = ({ idx }) => {
+    let newSelected = [...selectedIngredients];
 
     newSelected[1].splice(idx, 1);
-    this.setSelectedIngredients(newSelected);
+    setSelectedIngredients(newSelected);
   };
 
-  selectIngredient = (ingredient) => {
-    const main = this.state.selectedIngredients[1];
-    let newSelected = [...this.state.selectedIngredients];
+  const selectIngredient = (ingredient) => {
+    const main = selectedIngredients[1];
+    let newSelected = [...selectedIngredients];
     if (ingredient.type === "bun") {
       newSelected = [ingredient, main, ingredient];
     } else {
       newSelected[1] = [...main, ingredient];
     }
 
-    this.setSelectedIngredients(newSelected);
+    setSelectedIngredients(newSelected);
   };
 
-  render() {
-    return (
-      <>
-        <AppHeader />
-        <main className={"container"}>
-          <h1 className={"mt-10 mb-5"}>Соберите бургер</h1>
-          <div className={"burger-container"}>
-            <BurgerIngredients
-              ingredients={data}
-              selectIngredient={this.selectIngredient}
-            />
-            <BurgerConstructor
-              ingredients={this.state.selectedIngredients}
-              handleClose={this.handleClose}
-              onDragStart={this.onDragStart}
-              onDrop={this.onDrop}
-            />
-          </div>
-        </main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <AppHeader />
+      <main className={"container"}>
+        <h1 className={"mt-10 mb-5"}>Соберите бургер</h1>
+        <div className={"burger-container"}>
+          <BurgerIngredients
+            ingredients={data}
+            selectIngredient={selectIngredient}
+            selectedIngredients={selectedIngredients}
+          />
+          <BurgerConstructor
+            ingredients={selectedIngredients}
+            handleClose={handleClose}
+            onDragStart={onDragStart}
+            onDrop={onDrop}
+          />
+        </div>
+      </main>
+    </>
+  );
+};
 
 export default App;
