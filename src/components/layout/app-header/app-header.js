@@ -44,13 +44,3 @@ const AppHeader = (props) => {
 };
 
 export default AppHeader;
-
-// {menu.map(({ to, children, active, type }) => (
-//         <li>
-//             {
-//                 type === 'logo'
-//                     ? children
-//                     : <Link to={to} active={active}>{children}</Link>
-//             }
-//         </li>
-//     ))}
