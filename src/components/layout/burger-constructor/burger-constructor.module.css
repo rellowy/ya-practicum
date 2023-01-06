@@ -1,9 +1,13 @@
-.container {}
+.container {
+    display: flex;
+    flex-direction: column;
+}
 
 .elements {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    flex: 1 0 auto;
 }
 
 .elementsMain {
@@ -39,4 +43,30 @@
 .infoPrice > svg {
     width: 33px;
     height: 33px;
+}
+
+.modalBodyWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--text-primary-color);
+}
+
+.modalBodyWrapper > .orderNumber {
+    font-size: 144px;
+    font-family: Iceland, sans-serif;
+    text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
+                 0px 0px 8px rgba(51, 51, 255, 0.25),
+                 0px 4px 32px rgba(51, 51, 255, 0.5);
+}
+
+.modalBodyWrapper > h3 {
+    text-transform: lowercase;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.modalBodyWrapper > span {
+    font-size: 16px;
 }

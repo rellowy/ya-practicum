@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ingredientShape from "../../../types/ingredientShape";
 import {
@@ -7,6 +7,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerConstructorStyles from "./burger-constructor.module.css";
 import BurgerElement from "./burger-element/burger-element";
+import Modal from "../../ui/modal/modal";
+import OrderAcceptedIMG from "../../../images/order_accepted.png";
 
 const BurgerConstructor = ({
   ingredients,
@@ -14,6 +16,8 @@ const BurgerConstructor = ({
   onDragStart,
   onDrop,
 }) => {
+  const [isShowModal, setShowModal] = useState(false);
+
   let fullPrice = 0;
 
   const renderElement = (ingredient, idx, isMain = false) => {
@@ -74,23 +78,49 @@ const BurgerConstructor = ({
   });
 
   return (
-    <div className={BurgerConstructorStyles.container}>
-      <ul className={BurgerConstructorStyles.elements}>{elements}</ul>
-      <div className={[BurgerConstructorStyles.info, "mt-10"].join(" ")}>
-        <span className={BurgerConstructorStyles.infoPrice}>
-          {fullPrice}
-          <CurrencyIcon type="primary" />
-        </span>
-        <Button
-          htmlType="button"
-          type="primary"
-          size="large"
-          extraClass={"ml-10"}
-        >
-          Оформить заказ
-        </Button>
+    <>
+      <div className={BurgerConstructorStyles.container}>
+        <ul className={BurgerConstructorStyles.elements}>{elements}</ul>
+        <div className={[BurgerConstructorStyles.info, "mt-10"].join(" ")}>
+          <span className={BurgerConstructorStyles.infoPrice}>
+            {fullPrice}
+            <CurrencyIcon type="primary" />
+          </span>
+          <Button
+            htmlType="button"
+            type="primary"
+            size="large"
+            extraClass={"ml-10"}
+            onClick={() => setShowModal(true)}
+          >
+            Оформить заказ
+          </Button>
+        </div>
       </div>
-    </div>
+      <Modal show={isShowModal} handleClose={() => setShowModal(false)}>
+        <Modal.Body>
+          <div className={BurgerConstructorStyles.modalBodyWrapper}>
+            <h1
+              className={[BurgerConstructorStyles.orderNumber, "mb-8"].join(
+                " "
+              )}
+            >
+              034536
+            </h1>
+            <h3>Идентификатор заказа</h3>
+            <img
+              className={["mt-15", "mb-15"].join(" ")}
+              src={OrderAcceptedIMG}
+              alt={"Заказ принят"}
+            />
+            <span className={"mb-2"}>Ваш заказ начали готовить</span>
+            <span style={{ color: "var(--text-inactive-color)" }}>
+              Дождитесь готовности на орбитальной станции
+            </span>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 
