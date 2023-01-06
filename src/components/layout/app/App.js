@@ -68,6 +68,7 @@ const App = (props) => {
           <BurgerIngredients
             ingredients={data}
             selectIngredient={selectIngredient}
+            selectedIngredients={selectedIngredients}
           />
           <BurgerConstructor
             ingredients={selectedIngredients}

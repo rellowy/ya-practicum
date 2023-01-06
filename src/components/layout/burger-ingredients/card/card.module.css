@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     width: 272px;
     display: flex;
     flex-direction: column;
@@ -26,4 +27,10 @@
     font-weight: 400;
     height: 48px;
     text-align: center;
+}
+
+.counter {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

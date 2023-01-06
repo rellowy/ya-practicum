@@ -27,9 +27,7 @@ const BurgerElement = ({
 
   const handleDrag = () => {};
 
-  const handleDragEnd = () => {
-    itemRef.current.classList.remove("dragstart");
-  };
+  const handleDragEnd = () => itemRef.current.classList.remove("dragstart");
 
   const handleDragEnter = () => itemRef.current.classList.add("dragover");
 
@@ -39,7 +37,9 @@ const BurgerElement = ({
 
   const handleDrop = () => {
     itemRef.current.classList.remove("dragover");
-    onDrop(index);
+    if (onDrop) {
+      onDrop(index);
+    }
   };
 
   return (
